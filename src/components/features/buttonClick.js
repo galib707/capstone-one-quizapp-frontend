@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   signinClick: false,
   signupClick: false,
+  questionNameAndTitleButtonClicked: false,
 };
 
 const buttonClick = createSlice({
@@ -17,9 +18,16 @@ const buttonClick = createSlice({
       state.signinClick = false;
       state.signupClick = true;
     },
+    changeQuestionNameAndTitleButtonClickedStatus: (state) => {
+      state.questionNameAndTitleButtonClicked = true;
+    },
   },
 });
 
-export const { chagneSigninStatus, chagneSignupStatus } = buttonClick.actions;
+export const {
+  chagneSigninStatus,
+  chagneSignupStatus,
+  changeQuestionNameAndTitleButtonClickedStatus,
+} = buttonClick.actions;
 
 export default buttonClick.reducer;

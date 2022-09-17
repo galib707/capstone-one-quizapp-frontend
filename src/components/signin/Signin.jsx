@@ -4,7 +4,6 @@ import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { changeSigninStatus, userSignin } from "../features/signinReducer";
 import { useNavigate } from "react-router-dom";
-import { Button } from "flowbite-react";
 
 function Signin() {
   const dispatch = useDispatch();
@@ -63,12 +62,12 @@ function Signin() {
           ></Field>
           <ErrorMessage name="password" />
 
-          <Button
+          <button
             type="submit"
             className="w-full h-10 flex flex-col justify-center items-center bg-slate-800 text-slate-50 mt-5"
           >
             Login
-          </Button>
+          </button>
         </Form>
       </Formik>
     </div>

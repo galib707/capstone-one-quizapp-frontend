@@ -3,13 +3,13 @@ import { TiDeleteOutline, TiEdit } from "react-icons/ti";
 import Choices from "./Choices";
 function CardQuiz() {
   return (
-    <div class="card">
-      <div class="card-image">Math</div>
+    <div className="card">
+      <div className="card-image">Math</div>
       <div className="card-description">
-        <div class="heading">
+        <div className="heading">
           {" "}
           Qestion: how much is 2+2 = ?
-          <div class="options_for_multiple_choice">
+          <div className="options_for_multiple_choice">
             {/* <p>
               <span className="name">A.</span> 4
             </p>

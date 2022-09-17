@@ -1,151 +1,109 @@
 import React from "react";
-import CheckBadge from "./CheckBadge";
-import CircularBadge from "./CircularBadge";
-
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 function MultipleChoice() {
+  // initial values
+  const initialValues = {
+    question: "",
+    picked: "",
+  };
+
+  // on submit handlers
+  const onSubmit = (values) => {
+    console.log(values);
+  };
+
+  const validationSchema = Yup.object({
+    question: Yup.string().required("Required!"),
+  });
   return (
-    <div className=" w-full h-full flex flex-col justify-center items-center">
-      <form
-        action=""
-        method="post"
-        className=" w-full h-full flex flex-col  items-center"
-        onSubmit={(e) => {
-          e.preventDefault();
-          console.log(e);
-          let data = new FormData(e.target);
-        }}
+    <div className="multiple_choice_conatiner">
+      <div className="image_upload">
+        <div className="image_container"></div>
+      </div>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={onSubmit}
       >
-        <div className=" w-full h-3/6 flex flex-col justify-center items-center border border-gray-500">
-          <div className="w-1/2 h-full border border-gray-500 flex flex-col justify-end items-center">
-            <label for="name">upload an image file </label>
-            <input
+        <Form className="">
+          <div className="upload_button">
+            <Field
               type="file"
-              id="product-image"
-              name="image"
-              accept="image/png, image/jpeg"
-            />
+              as="input"
+              id="image"
+              name="imgae"
+              accept="image/*"
+            ></Field>
           </div>
-        </div>
+          <div className="question">
+            <label className="w-full my-5 inline-flex" htmlFor="question">
+              Question
+            </label>
+            <Field
+              className="w-full h-10 border border-gray-500"
+              type="question"
+              id="question"
+              name="question"
+            ></Field>
+            <ErrorMessage name="question" />
+          </div>
+          <div className="choice_container">
+            <div className="choice_container_row-1">
+              <label>
+                <Field type="radio" name="picked" value="1" />
+                <Field
+                  className=""
+                  type="question"
+                  id="question"
+                  name="question"
+                ></Field>
+              </label>
+              <ErrorMessage name="picked" />
+              <label>
+                <Field type="radio" name="picked" value="2" />
+                <Field
+                  className=""
+                  type="question"
+                  id="question"
+                  name="question"
+                ></Field>
+              </label>
+              <ErrorMessage name="picked" />
+            </div>
+            <div className="choice_container_row-2">
+              <label>
+                <Field type="radio" name="picked" value="3" />
+                <Field
+                  className=""
+                  type="question"
+                  id="question"
+                  name="question"
+                ></Field>
+              </label>
+              <ErrorMessage name="picked" />
+              <label>
+                <Field type="radio" name="picked" value="4" />
+                <Field
+                  className=""
+                  type="question"
+                  id="question"
+                  name="question"
+                ></Field>
+              </label>
 
-        <div className="w-full h-1/6 border border-gray-500 flex flex-col">
-          <label
-            for="name"
-            className="text-2xl h-1/2 flex flex-col justify-center"
-          >
-            Question title{" "}
-          </label>
-          <input
-            type="text"
-            name="title"
-            id="name"
-            placeholder="type question here"
-            required
-            className="border border-gray-400 h-1/2 pl-4"
-          />
-        </div>
-        <div className="w-full h-1/6 border border-gray-500 flex">
-          <div className="w-1/2 h-full border border-red-500 flex ">
-            <div className="w-1/5 h-full flex justify-center items-center">
-              <CircularBadge />
-            </div>
-            <div className="w-3/5 h-full flex justify-center items-center">
-              <input
-                type="text"
-                name="choice1"
-                id="name"
-                placeholder="type question here"
-                required
-                className="border border-gray-400 w-full h-full pl-4"
-              />
-            </div>
-            <div className="w-1/5 h-full flex justify-center items-center">
-              <CheckBadge />
+              <ErrorMessage name="picked" />
             </div>
           </div>
-          <div className="w-1/2 h-full border border-red-500 flex">
-            <div className="w-1/5 h-full flex justify-center items-center">
-              <CircularBadge />
-            </div>
-            <div className="w-3/5 h-full flex justify-center items-center">
-              <input
-                type="text"
-                name="choice1"
-                id="name"
-                placeholder="type question here"
-                required
-                className="border border-gray-400 w-full h-full pl-4"
-              />
-            </div>
-            <div className="w-1/5 h-full flex justify-center items-center">
-              <CheckBadge />
-            </div>
-          </div>
-        </div>
-        <div className="w-full h-1/6 border border-gray-500 flex">
-          <div className="w-1/2 h-full border border-red-500 flex">
-            <div className="w-1/5 h-full flex justify-center items-center">
-              <CircularBadge />
-            </div>
-            <div className="w-3/5 h-full flex justify-center items-center">
-              <input
-                type="text"
-                name="choice1"
-                id="name"
-                placeholder="type question here"
-                required
-                className="border border-gray-400 w-full h-full pl-4"
-              />
-            </div>
-            <div className="w-1/5 h-full flex justify-center items-center">
-              <CheckBadge />
-            </div>
-          </div>
-          <div className="w-1/2 h-full border border-red-500 flex">
-            <div className="w-1/5 h-full flex justify-center items-center">
-              <CircularBadge />
-            </div>
-            <div className="w-3/5 h-full flex justify-center items-center">
-              <input
-                type="text"
-                name="choice1"
-                id="name"
-                placeholder="type question here"
-                required
-                className="border border-gray-400 w-full h-full pl-4"
-              />
-            </div>
-            <div className="w-1/5 h-full flex justify-center items-center">
-              <CheckBadge />
-            </div>
-          </div>
-        </div>
 
-        <div className="w-full h-1/6 border border-gray-500 flex flex-col">
-          <label
-            for="name"
-            className="text-2xl h-1/2 flex flex-col justify-center"
-          >
-            Correct Answer:
-          </label>
-          <input
-            type="text"
-            name="title"
-            id="name"
-            placeholder="type question here"
-            required
-            className="border border-gray-400 h-1/2 pl-4"
-          />
-        </div>
-
-        <div className="w-full h-1/6 border border-gray-500 flex flex-col justify-center items-center">
           <button
             type="submit"
-            className="w-[200px] bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
+            className="w-full h-10 flex flex-col justify-center items-center bg-slate-800 text-slate-50 mt-5"
           >
-            Submit
+            Login
           </button>
-        </div>
-      </form>
+        </Form>
+      </Formik>
     </div>
   );
 }
