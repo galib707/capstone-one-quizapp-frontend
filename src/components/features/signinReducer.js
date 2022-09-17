@@ -19,12 +19,16 @@ const userSignin = createAsyncThunk(
     console.log(respose);
   }
 );
-const initialState = {};
+const initialState = {
+  isSignedIn: false,
+};
 
 const signinReducer = createSlice({
   name: "signin",
   initialState,
-  reducers: {},
+  reducers: {
+    changeSigninStatus: (state) => [(state.isSignedIn = false)],
+  },
   extraReducers: (builders) => {
     builders.addCase(userSignin.pending, (state, action) => {
       console.log("user signin pending");
@@ -33,12 +37,13 @@ const signinReducer = createSlice({
       console.log("user signin rejected");
     });
     builders.addCase(userSignin.fulfilled, (state, action) => {
+      state.isSignedIn = true;
       console.log("user signin fulfilled");
     });
   },
 });
 
-export const {} = signinReducer.actions;
+export const { changeSigninStatus } = signinReducer.actions;
 
 export default signinReducer.reducer;
 

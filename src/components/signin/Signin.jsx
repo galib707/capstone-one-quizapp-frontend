@@ -1,11 +1,21 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { useDispatch } from "react-redux";
-import { userSignin } from "../features/signinReducer";
+import { useDispatch, useSelector } from "react-redux";
+import { changeSigninStatus, userSignin } from "../features/signinReducer";
+import { useNavigate } from "react-router-dom";
+import { Button } from "flowbite-react";
 
 function Signin() {
   const dispatch = useDispatch();
+  const signin = useSelector((state) => state.signin);
+  const goTo = useNavigate();
+
+  //redirect to profile page after signin
+  if (signin.isSignedIn) {
+    goTo("/profile");
+    dispatch(changeSigninStatus());
+  }
 
   // initial values
   const initialValues = {
@@ -53,12 +63,12 @@ function Signin() {
           ></Field>
           <ErrorMessage name="password" />
 
-          <button
+          <Button
             type="submit"
             className="w-full h-10 flex flex-col justify-center items-center bg-slate-800 text-slate-50 mt-5"
           >
             Login
-          </button>
+          </Button>
         </Form>
       </Formik>
     </div>

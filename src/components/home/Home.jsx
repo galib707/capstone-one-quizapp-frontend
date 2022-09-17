@@ -1,22 +1,57 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link, Outlet } from "react-router-dom";
+import Navbar from "../navbar/Navbar";
+import Signin from "../signin/Signin";
+import Signup from "../signup/Signup";
+import "./styles.css";
 
 function Home() {
+  const button = useSelector((state) => state.button);
   return (
-    <div className="w-full h-screen flex">
-      <div className="w-2/6 h-full flex flex-col justify-center items-center border border-gray-600">
-        <div className="w-96  border border-gray-500">
-          <Outlet />
-          <div className="w-full h-1/5 flex justify-between items-center p-3 ">
-            <div className="">
-              {" "}
-              <Link to="/"> SignIn </Link>
-            </div>
-            <div className="">
-              <Link to="signup">SignUp </Link>
-            </div>
-          </div>
+    <div className="container_home">
+      <Navbar />
+      <div className="container_home_main">
+        <div
+          className={`container_home_main_signin${
+            button.signinClick === true ? " scale-up-center" : ""
+          }`}
+        >
+          {button.signinClick && <Signin />}
         </div>
+        <div
+          className={`container_home_main_signin${
+            button.signupClick === true ? " scale-up-center" : ""
+          }`}
+        >
+          {button.signupClick && <Signup />}
+        </div>
+      </div>
+      <div
+        className={`area${
+          button.signinClick === true || button.signupClick === true
+            ? " area_display"
+            : ""
+        }`}
+      >
+        <ul
+          className={`circles${
+            button.signinClick === true || button.signupClick === true
+              ? " area_display"
+              : ""
+          }`}
+        >
+          <li>A</li>
+          <li>42</li>
+          <li>?</li>
+          <li>Q</li>
+          <li>≅</li>
+          <li>pi</li>
+          <li>i</li>
+          <li>e</li>
+          <li>+</li>
+          <li>∑</li>
+        </ul>
       </div>
     </div>
   );
