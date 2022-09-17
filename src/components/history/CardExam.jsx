@@ -4,14 +4,16 @@ function CardExam() {
   return (
     <>
       <div class="card">
-        <div class="card-image"></div>
-        <div class="category"> Illustration </div>
-        <div class="heading">
-          {" "}
-          A heading that must span over two lines
-          <div class="author">
+        <div class="card-image">Math</div>
+        <div className="card-description">
+          <div class="category"> Basic oprarations</div>
+          <div class="heading">
             {" "}
-            By <span class="name">Abi</span> 4 days ago
+            additon, subtraction, multiplication
+            <div class="author">
+              {" "}
+              By <span class="name">Jhon</span> 4 days ago
+            </div>
           </div>
         </div>
       </div>

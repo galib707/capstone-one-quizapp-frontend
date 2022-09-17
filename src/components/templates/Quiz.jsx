@@ -6,6 +6,7 @@ import {
   getTopicForQuizView,
 } from "../features/quizViewReducer";
 import "./styles.css";
+import CardQuiz from "./CardQuiz";
 function Quiz() {
   const dispatch = useDispatch();
   const quizView = useSelector((state) => state.quizView);
@@ -43,6 +44,9 @@ function Quiz() {
             {quizView.quizTitleView.length !== 0 && <DiCelluloid />}
           </div>
           <div className="topic_view">{quizView.quizTopicView}</div>
+        </div>
+        <div className="quiz_view_questions">
+          <CardQuiz />
         </div>
       </div>
     </div>
