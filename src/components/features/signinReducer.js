@@ -15,12 +15,22 @@ const userSignin = createAsyncThunk(
       }
     );
 
-    let respose = await sendSigninCredentials.json();
-    console.log(respose);
+    let response = await sendSigninCredentials.json();
+
+    let userObj = {
+      name: response.user_data.name,
+      id: response.user_data._id,
+      quizzes: response.user_data.quizzes,
+    };
+
+    return userObj;
   }
 );
 const initialState = {
   isSignedIn: false,
+  user_id: "",
+  userName: "",
+  quizzes: [],
 };
 
 const signinReducer = createSlice({
@@ -37,8 +47,11 @@ const signinReducer = createSlice({
       console.log("user signin rejected");
     });
     builders.addCase(userSignin.fulfilled, (state, action) => {
-      state.isSignedIn = true;
       console.log("user signin fulfilled");
+      state.isSignedIn = true;
+      state.userName = action.payload.name;
+      state.quizzes = action.payload.quizzes;
+      state.user_id = action.payload.id;
     });
   },
 });

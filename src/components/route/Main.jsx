@@ -19,7 +19,7 @@ function Main() {
         </Route>
         <Route path="/profile" element={<Profile />}>
           <Route index element={<History />} />
-          <Route path="templates" element={<Quiz />}>
+          <Route path="quiz" element={<Quiz />}>
             <Route index element={<BinaryChoice />} />
             <Route path="multiple" element={<MultipleChoice />} />
           </Route>

@@ -1,6 +1,7 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, Outlet } from "react-router-dom";
+import { getMouseClickReference } from "../features/buttonClick";
 import Navbar from "../navbar/Navbar";
 import Signin from "../signin/Signin";
 import Signup from "../signup/Signup";
@@ -8,8 +9,13 @@ import "./styles.css";
 
 function Home() {
   const button = useSelector((state) => state.button);
+  const dispatch = useDispatch();
+
   return (
-    <div className="container_home">
+    <div
+      className="container_home"
+      onClick={(e) => dispatch(getMouseClickReference(e.target.className))}
+    >
       <Navbar />
       <div className="container_home_main">
         <div
@@ -30,27 +36,33 @@ function Home() {
       <div
         className={`area${
           button.signinClick === true || button.signupClick === true
-            ? " area_display"
-            : ""
+            ? " area_display_off"
+            : " area_display_on"
         }`}
       >
         <ul
           className={`circles${
             button.signinClick === true || button.signupClick === true
-              ? " area_display"
-              : ""
+              ? " area_display_off"
+              : " area_display_on"
           }`}
         >
-          <li>A</li>
+          <li>
+            <img src="./einstein.png" alt="" />
+          </li>
           <li>42</li>
           <li>?</li>
-          <li>Q</li>
-          <li>≅</li>
-          <li>pi</li>
           <li>i</li>
-          <li>e</li>
-          <li>+</li>
-          <li>∑</li>
+          <li></li>
+          <li>pi</li>
+          <li>?</li>
+          <li>?</li>
+          <li>
+            <img src="./einstein.png" alt="" />
+          </li>
+          <li>
+            <img src="./einstein.png" alt="" />
+          </li>
         </ul>
       </div>
     </div>

@@ -11,6 +11,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Outlet, useNavigate } from "react-router-dom";
 import { changeQuestionNameAndTitleButtonClickedStatus } from "../features/buttonClick";
+import { createQuiz } from "../features/quizCardReducer";
 
 // ######################################
 
@@ -18,6 +19,8 @@ function Quiz() {
   const dispatch = useDispatch();
   const quizView = useSelector((state) => state.quizView);
   const button = useSelector((state) => state.button);
+  const quiz = useSelector((state) => state.quiz);
+  const signin = useSelector((state) => state.signin);
   const goTo = useNavigate();
 
   // ###################################### Formik setup  ######################################
@@ -30,6 +33,8 @@ function Quiz() {
     dispatch(getTopicForQuizView(values.topic));
     console.log(values);
     dispatch(changeQuestionNameAndTitleButtonClickedStatus());
+    values["user_id"] = signin.user_id;
+    dispatch(createQuiz(values));
   };
 
   const validationSchema = Yup.object({
@@ -84,7 +89,7 @@ function Quiz() {
             <div className="question_type">
               <p
                 className="true_false_button"
-                onClick={() => goTo("/profile/templates")}
+                onClick={() => goTo("/profile/quiz")}
               >
                 True/False
               </p>

@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   chagneSigninStatus,
@@ -9,6 +9,7 @@ import "./styles.css";
 function Navbar() {
   const goTo = useNavigate();
   const dispatch = useDispatch();
+  const signin = useSelector((state) => state.signin);
   return (
     <div className="navbar">
       <div className="logo-container">
@@ -28,18 +29,21 @@ function Navbar() {
           </p>
         </div>
       </div>
-      {/* signout */}
-      <div
-        className="signin_button"
-        onClick={() => dispatch(chagneSigninStatus())}
-      >
-        <p className="signin_button_text">Signin</p>
-      </div>
+      {signin.isSignedIn === false && (
+        <div
+          className="signin_button"
+          onClick={() => dispatch(chagneSigninStatus())}
+        >
+          <p className="signin_button_text">Signin</p>
+        </div>
+      )}
       <div
         className="signout_button"
         onClick={() => dispatch(chagneSignupStatus())}
       >
-        <p className="signout_button_text">Signout</p>
+        <p className="signout_button_text">
+          {signin.isSignedIn === false ? "Sign Up" : "Sign Out"}
+        </p>
       </div>
     </div>
   );

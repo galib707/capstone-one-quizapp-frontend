@@ -1,11 +1,16 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { AiOutlineDoubleRight } from "react-icons/ai";
 function MultipleChoice() {
   // initial values
   const initialValues = {
     question: "",
     picked: "",
+    choiceOne: "",
+    choiceTwo: "",
+    choiceThree: "",
+    choiceFoure: "",
   };
 
   // on submit handlers
@@ -15,6 +20,7 @@ function MultipleChoice() {
 
   const validationSchema = Yup.object({
     question: Yup.string().required("Required!"),
+    picked: Yup.string().required("Required!"),
   });
   return (
     <div className="multiple_choice_conatiner">
@@ -26,7 +32,7 @@ function MultipleChoice() {
         validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
-        <Form className="">
+        <Form className="form_container_multiple_choice">
           <div className="upload_button">
             <Field
               type="file"
@@ -37,11 +43,11 @@ function MultipleChoice() {
             ></Field>
           </div>
           <div className="question">
-            <label className="w-full my-5 inline-flex" htmlFor="question">
-              Question
+            <label className="question_level" htmlFor="question">
+              <p> Question :</p>
             </label>
             <Field
-              className="w-full h-10 border border-gray-500"
+              className="question_input"
               type="question"
               id="question"
               name="question"
@@ -53,20 +59,22 @@ function MultipleChoice() {
               <label>
                 <Field type="radio" name="picked" value="1" />
                 <Field
-                  className=""
-                  type="question"
-                  id="question"
-                  name="question"
+                  className="choice_ipnput"
+                  type="text"
+                  id="choiceOne"
+                  name="choiceOne"
+                  placeholder="Option A"
                 ></Field>
               </label>
               <ErrorMessage name="picked" />
               <label>
                 <Field type="radio" name="picked" value="2" />
                 <Field
-                  className=""
-                  type="question"
-                  id="question"
-                  name="question"
+                  className="choice_ipnput"
+                  type="text"
+                  id="choiceTwo"
+                  name="choiceTwo"
+                  placeholder="Option B"
                 ></Field>
               </label>
               <ErrorMessage name="picked" />
@@ -75,33 +83,37 @@ function MultipleChoice() {
               <label>
                 <Field type="radio" name="picked" value="3" />
                 <Field
-                  className=""
-                  type="question"
-                  id="question"
-                  name="question"
+                  className="choice_ipnput"
+                  type="text"
+                  id="choiceThree"
+                  name="choiceThree"
+                  placeholder="Option C"
                 ></Field>
               </label>
               <ErrorMessage name="picked" />
               <label>
                 <Field type="radio" name="picked" value="4" />
                 <Field
-                  className=""
-                  type="question"
-                  id="question"
-                  name="question"
+                  className="choice_ipnput"
+                  type="text"
+                  id="choiceFour"
+                  name="choiceFour"
+                  placeholder="Option D"
                 ></Field>
               </label>
 
               <ErrorMessage name="picked" />
             </div>
           </div>
-
-          <button
-            type="submit"
-            className="w-full h-10 flex flex-col justify-center items-center bg-slate-800 text-slate-50 mt-5"
-          >
-            Login
-          </button>
+          <div className="add_button_container">
+            <button
+              type="submit"
+              className="Add_question_button"
+              style={{ backgroundColor: "#504276" }}
+            >
+              Add <AiOutlineDoubleRight />
+            </button>
+          </div>
         </Form>
       </Formik>
     </div>

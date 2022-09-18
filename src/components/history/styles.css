@@ -5,7 +5,7 @@
   background: var(--bgColor);
   flex-wrap: wrap;
   padding: 1em;
-  gap: 1em;
+  gap: 10px;
 }
 
 /* styles for add quiz button */
@@ -38,14 +38,21 @@
 /* card styling */
 /* From uiverse.io by @alexmaracinaru */
 .card {
-  width: 400px;
-  height: 150px;
+  min-width: 500px;
+  max-height: 150px;
   background: var(--examCardBg);
   padding: 0.4em;
   border-radius: 6px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  border-radius: 0.4em;
+  box-shadow: 0.3em 0.3em 0.7em #00000015;
+  transition: border 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: var(--examCardBg) 0.1em solid;
+}
+.card:hover {
+  border: hsla(205, 46%, 10%, 1) 0.1em solid;
 }
 
 .card-image {
