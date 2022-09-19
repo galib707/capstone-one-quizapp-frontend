@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Outlet } from "react-router-dom";
 import { getMouseClickReference } from "../features/buttonClick";
 import Navbar from "../navbar/Navbar";
 import Signin from "../signin/Signin";
 import Signup from "../signup/Signup";
 import "./styles.css";
+import { io } from "socket.io-client";
 
 function Home() {
   const button = useSelector((state) => state.button);
   const dispatch = useDispatch();
+  const socket = io("http://localhost:8000/");
+
+  useEffect(() => {
+    socket.on("connect", () => {
+      console.log(socket.id);
+    });
+    socket.emit("create-room", "newIdForRoom");
+  }, []);
 
   return (
     <div

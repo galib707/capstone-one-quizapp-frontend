@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import History from "../history/History";
 import Home from "../home/Home";
 import Profile from "../profile/Profile";
+import TeachersView from "../quizRoom/TeachersView";
 import Signin from "../signin/Signin";
 import Signup from "../signup/Signup";
 import BinaryChoice from "../templates/BinaryChoice";
@@ -24,6 +25,7 @@ function Main() {
             <Route path="multiple" element={<MultipleChoice />} />
           </Route>
         </Route>
+        <Route path="/teachersView" element={<TeachersView />} />
       </Routes>
     </>
   );

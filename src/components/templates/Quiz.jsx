@@ -21,6 +21,7 @@ function Quiz() {
   const button = useSelector((state) => state.button);
   const quiz = useSelector((state) => state.quiz);
   const signin = useSelector((state) => state.signin);
+
   const goTo = useNavigate();
 
   // ###################################### Formik setup  ######################################
@@ -34,7 +35,7 @@ function Quiz() {
     console.log(values);
     dispatch(changeQuestionNameAndTitleButtonClickedStatus());
     values["user_id"] = signin.user_id;
-    dispatch(createQuiz(values));
+    // dispatch(createQuiz(values));
   };
 
   const validationSchema = Yup.object({
@@ -116,7 +117,18 @@ function Quiz() {
           <div className="topic_view">{quizView.quizTopicView}</div>
         </div>
         <div className="quiz_view_questions">
-          <CardQuiz />
+          <button
+            type="submit"
+            className="title_submit_button"
+            style={{ backgroundColor: "#504276" }}
+            onClick={() => goTo("/teachersView")}
+          >
+            Next
+          </button>
+          {quizView.questionArr.length !== 0 &&
+            quizView.questionArr.map((question) => (
+              <CardQuiz question={question} />
+            ))}
         </div>
       </div>
     </div>

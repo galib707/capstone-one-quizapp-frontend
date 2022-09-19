@@ -2,7 +2,14 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { AiOutlineDoubleRight } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { storeQuestionLocally } from "../features/quizViewReducer";
+
 function MultipleChoice() {
+  const dispatch = useDispatch();
+  const quizView = useSelector((state) => state.quizView);
+  const quiz = useSelector((state) => state.quiz);
+
   // initial values
   const initialValues = {
     question: "",
@@ -10,12 +17,16 @@ function MultipleChoice() {
     choiceOne: "",
     choiceTwo: "",
     choiceThree: "",
-    choiceFoure: "",
+    choiceFour: "",
   };
 
   // on submit handlers
   const onSubmit = (values) => {
-    console.log(values);
+    values["quizId"] = quiz.quizId;
+    values["type"] = "multiple";
+
+    // console.log(values);
+    dispatch(storeQuestionLocally(values));
   };
 
   const validationSchema = Yup.object({

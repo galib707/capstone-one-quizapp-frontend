@@ -2,8 +2,13 @@ import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { AiOutlineDoubleRight } from "react-icons/ai";
+import { storeQuestionLocally } from "../features/quizViewReducer";
+import { useDispatch, useSelector } from "react-redux";
 
 function BinaryChoice() {
+  const dispatch = useDispatch();
+  const quiz = useSelector((state) => state.quiz);
+
   const initialValues = {
     question: "",
     picked: "",
@@ -12,6 +17,11 @@ function BinaryChoice() {
   // on submit handlers
   const onSubmit = (values) => {
     console.log(values);
+    values["quizId"] = quiz.quizId;
+    values["type"] = "binary";
+
+    // console.log(values);
+    dispatch(storeQuestionLocally(values));
   };
 
   const validationSchema = Yup.object({

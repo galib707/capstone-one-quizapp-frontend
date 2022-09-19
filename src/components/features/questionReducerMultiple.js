@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const setQuestion = createAsyncThunk(
-  "multiple/setQuestion",
+  "question/setQuestion",
   async (credentials) => {
     console.log("inside set question thunk");
     let sendQuestion = await fetch(
@@ -15,15 +15,19 @@ const setQuestion = createAsyncThunk(
       }
     );
     let response = await sendQuestion.json();
-    console.log(response)
+    console.log(response);
   }
 );
-const initialState = {};
+const initialState = {
+ 
+};
 
 const questionReducerMultiple = createSlice({
-  name: "multiple",
+  name: "question",
   initialState,
-  reducers: {},
+  reducers: {
+   
+  },
   extraReducers: (builders) => {
     builders.addCase(setQuestion.pending, (state, action) => {
       console.log("set question pending");

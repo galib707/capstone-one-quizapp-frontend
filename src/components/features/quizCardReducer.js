@@ -32,6 +32,7 @@ const createQuiz = createAsyncThunk("quiz/createQuiz", async (credentials) => {
 const initialState = {
   quizDeleted: false,
   quizCreated: false,
+  quizId: "",
 };
 
 const quizCardReducer = createSlice({
