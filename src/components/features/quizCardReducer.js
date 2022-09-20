@@ -8,13 +8,10 @@ const deleteQuizById = createAsyncThunk(
       `http://localhost:8000/quiz/delete/${credentials}`,
       {
         method: "DELETE",
-        // headers: {
-        //   "Content-Type": "application/json",
-        // },
-        // body: JSON.stringify(credentials),
         mode: "cors",
       }
     );
+    return credentials;
   }
 );
 const createQuiz = createAsyncThunk("quiz/createQuiz", async (credentials) => {
@@ -28,11 +25,16 @@ const createQuiz = createAsyncThunk("quiz/createQuiz", async (credentials) => {
     body: JSON.stringify(credentials),
     mode: "cors",
   });
+  let response = await sendSigninCredentials.json();
+  console.log(response);
+  return sendSigninCredentials;
 });
 const initialState = {
+  deletedQuizIdArr: [],
   quizDeleted: false,
   quizCreated: false,
   quizId: "",
+  deletedQuizId: "",
 };
 
 const quizCardReducer = createSlice({
@@ -48,7 +50,9 @@ const quizCardReducer = createSlice({
     });
     builders.addCase(deleteQuizById.fulfilled, (state, action) => {
       console.log("delete quiz fulfilled");
+      state.deletedQuizIdArr.push(action.payload);
       state.quizDeleted = true;
+      state.deletedQuizId = action.payload;
     });
     builders.addCase(createQuiz.pending, (state, action) => {
       console.log("createQuiz is pending");
@@ -59,6 +63,7 @@ const quizCardReducer = createSlice({
     builders.addCase(createQuiz.fulfilled, (state, action) => {
       console.log("createQuiz is fulfilled");
       state.quizCreated = true;
+      state.quizId = action.payload;
     });
   },
 });

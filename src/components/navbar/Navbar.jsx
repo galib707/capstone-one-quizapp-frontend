@@ -17,17 +17,19 @@ function Navbar() {
       </div>
       {/* mid section div */}
       <div className=" w-9/12 h-full flex flex-col justify-center items-center">
-        <div className=" flex">
-          <p
-            className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l"
-            onClick={() => goTo("templates")}
-          >
-            Temeplates
-          </p>
-          <p className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
-            Reports
-          </p>
-        </div>
+        {signin.isSignedIn === true && (
+          <div className=" flex">
+            <p
+              className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l"
+              onClick={() => goTo("quiz")}
+            >
+              Create
+            </p>
+            <p className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
+              Reports
+            </p>
+          </div>
+        )}
       </div>
       {signin.isSignedIn === false && (
         <div

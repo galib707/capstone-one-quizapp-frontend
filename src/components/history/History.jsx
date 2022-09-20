@@ -6,7 +6,6 @@ import "./styles.css";
 
 function History() {
   const signin = useSelector((state) => state.signin);
-
   return (
     <div className="history_container">
       <Add />

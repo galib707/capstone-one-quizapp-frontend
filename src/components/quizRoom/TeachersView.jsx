@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import CardQuiz from "../templates/CardQuiz";
-import { io } from "socket.io-client";
+import { socket } from "../..";
 function TeachersView() {
   const quizView = useSelector((state) => state.quizView);
   let questionsArr = quizView.questionArr;
   console.log(questionsArr);
   let [question, setQuestion] = useState(null);
   let [currQuesID, setCurrQuestionId] = useState(0);
-
-  const socket = io("http://localhost:8000/");
 
   useEffect(() => {
     socket.on("connect", () => {

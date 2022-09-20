@@ -35,7 +35,7 @@ function Quiz() {
     console.log(values);
     dispatch(changeQuestionNameAndTitleButtonClickedStatus());
     values["user_id"] = signin.user_id;
-    // dispatch(createQuiz(values));
+    dispatch(createQuiz(values));
   };
 
   const validationSchema = Yup.object({

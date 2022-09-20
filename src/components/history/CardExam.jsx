@@ -1,4 +1,5 @@
 import React from "react";
+import { FaPlayCircle } from "react-icons/fa";
 import { TiDeleteOutline, TiEdit } from "react-icons/ti";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteQuizById } from "../features/quizCardReducer";
@@ -10,10 +11,11 @@ function CardExam(props) {
   return (
     <>
       <div
-        className="card"
-        style={
-          quiz.quizDeleted === true ? { display: "none" } : { display: "flex" }
-        }
+        className={`card ${
+          quiz.quizDeleted === true && props.quiz._id === quiz.deletedQuizId
+            ? " area_display_off"
+            : ""
+        }`}
       >
         <div className="card-image">{props.quiz.title}</div>
         <div className="card-description">
@@ -36,6 +38,9 @@ function CardExam(props) {
             <TiDeleteOutline
               onClick={() => dispatch(deleteQuizById(props.quiz._id))}
             />
+          </p>
+          <p className="delete_icon">
+            <FaPlayCircle />
           </p>
         </div>
       </div>
